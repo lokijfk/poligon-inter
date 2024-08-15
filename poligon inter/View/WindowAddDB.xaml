@@ -15,7 +15,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock>Dodaj nową bazę</TextBlock>
+        <TextBlock Text="{Binding WindowName}"/>
         <TextBox Grid.Row="1"
              Margin="0,6,0,0"
              wpf:HintAssist.Hint="Name"

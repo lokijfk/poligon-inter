@@ -61,17 +61,29 @@ namespace poligon_inter.ViewModel
                 if (File.Exists(path))
                 {
                     Debug.WriteLine("baza o takiej nazwie już istnieje, bazy nie utworzono");
+                    await ShowMessage(new MessageBoxXViewModel { Message = "baza o takiej nazwie już istnieje, bazy nie utworzono" });
                 }
                 else
                 {
 
                 }
-            }
+            }else await ShowMessage(new MessageBoxXViewModel { Message = "nie podałeś nazy, bazy nie utworzono" });
 
-           // Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + x);
+            // Debug.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + x);
         }
 
-         
+        private async Task ShowMessage(MessageBoxXViewModel DC)
+        {
+            object? view = new MessageBoxX
+            {
+                DataContext = DC
+            };
+
+            object? result = await DialogHost.Show(view, "RootDialog", null, null, null);
+            
+        }
+
+
         private async Task<string> ShowDialog(SimpledialogViewModel DC)
         {
             //tak wszystko działa, pozostaje pododawać metody żeby mozna było wywołać jedno okno do różnych celów
